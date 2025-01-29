@@ -1,4 +1,5 @@
 import pandas as pdiddy
+import numpy as np
 
 # this is sort of like how we create a numpy array - just here it's a series
 # since pandas deals with tabulated data (csv), and not so much with matrix and linear algebra
@@ -17,6 +18,19 @@ data_many = {'Name': ['Nosferatu', 'Helen', "Chief Kief", "Diddy"], 'Age': [459,
 ['Male', 'Female', 'Male', "Unknown"]}
 df = pdiddy.DataFrame(data_many)
 print(df)
+print("--------------------")
+
+print(f'names here:\n{df["Name"]}') # Select column
+print(df.loc[0]) # Select row by index - the index is the LABEL, in this case Label=Index of the row
+print(df.iloc[0, 1]) # Select element by position
+print(df[1:3]) # Slice rows
+print(df.loc[:, 'Name':'Age']) # Slice rows and columns
+
+print("--------------------")
+# Data frames can be build from many things: ndarray, Series, map, lists, dict, constants, or another DataFrame.
+data_ndarr = np.array(["p", "diddy"])
+df_diddy = pdiddy.DataFrame(data_ndarr)
+print(f'boo: {df_diddy}')
 
 # statistics about DF
 print(f'DF stats:\n {df.describe()}')
