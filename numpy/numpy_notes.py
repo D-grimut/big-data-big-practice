@@ -4,10 +4,13 @@ python_list = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]
 print(python_list)
 
 # a = np.array([1, 2, 3, 4, 5]) # shape = (5,)
-a = np.array([[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5] ]) # shape = (1, 5)
-a2 = np.array([[1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]) # shape = (1, 5)
+a = np.array([[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5] ]) # shape = (3, 5)
+a2 = np.array([[1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]) # shape = (2, 5)
 b = a ** 2
 c = np.sum(a) # same as c = b.sum()
+
+print("shape a: ", a.shape)
+print("shape a2: ", a2.shape)
 
 print(b, c)
 rows, cols = a.shape
