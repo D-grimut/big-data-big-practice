@@ -44,4 +44,37 @@ print(f'Avg Rating for each movie:\n{avg_rating_movies}')
 
 best_movies = avg_rating_movies[avg_rating_movies["rating"] == 5.0]
 print(f'Movies with rating of 5:\n{best_movies}')
+
+ratings["timestamp"] = pdd.to_datetime(ratings["timestamp"], unit="s")
+ratings = ratings[ratings["timestamp"] > "2015-02-01"]
+print(f'Ratings timestamp converted:\n{ratings.sort_values(by="timestamp")}') # by default, sort is ascending
+print("-----------------------------")
+
+# Task 4
+movies_with_tags = pdd.merge(movies, tags, on='movieId')
+print(f'Movies with tags:\n{movies_with_tags}')
+
+box_office = pdd.merge(movies_with_tags, avg_rating_movies, on='movieId')
+animation = box_office[box_office["tag"] == 'animation']
+print(f'Box Office - Animation:\n{animation}')
+
+comedies = box_office[(box_office["rating"] >= 4.0) & (box_office["IsComedy"])]
+print(f'Good Comedies:\n{comedies.sort_values(by="rating")}')
+print("-----------------------------")
+
+# Task 5
+# Extracting the years from the movie title and placing that into a column called "year"
+movies_with_year = pdd.merge(movies, avg_rating_movies, on='movieId')
+movies_with_year["year"] = movies_with_year["title"].str.extract(r"\((\d{4})\)").astype(float)
+print(f'Movies with years:\n{movies_with_year}')
+
+# all we need for the correlation is the two columns that we are interested of finding the correlation of
+correlation = movies_with_year["year"].corr(movies_with_year["rating"])
+print("Correlation between release year and average rating:", correlation)
+
+# Again, here we want to group by year and avergae the ratings - this means we need to 
+# select the "rating" column AFTER the groupby, and then mean, otherwise the mean() will be performed
+# on all the columns present in the groupby.
+yearly_avg = movies_with_year.groupby(by="year")["rating"].mean().reset_index(name="avg_year_rating")
+print(f'Avg yearly rating:\n{yearly_avg}')
 print("-----------------------------")
