@@ -63,7 +63,7 @@ print(b_new[0:2, 1]) # Extracts second column - we get the first two rows with [
 print(b_new[:1]) # Extracts first row
 
 # Boolean indexing
-print(b_new[b_new < 3]) # Output: [1 2]
+print(b_new[b_new < 3]) # output: [ 1.5 -1.  -1.  -1. ]
 
 # Here we are simply passing in the matrix of indeces of the items we want
 # so, we want the item at row 1, col 1, and row 0, col 0
