@@ -1,6 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+# Note: see matplot_practice_a1.py for PROPER WAY TO DO SUBPLOTS
+
 # Data - can be represneted as: list, tuple, or NumPy array
 
 x = [1, 2, 3, 4, 5]

@@ -1,0 +1,11 @@
+City,Month,Revenue,Number of Transactions,Product Categories,Customer Satisfaction Score
+New York,3,50000,1200,"Electronics,Clothing",8.5
+New York,4,42500,1050,"Groceries,Clothing",7.8
+New York,1,37800,950,"Electronics,Groceries",8.2
+New York,2,55200,1300,"Clothing,Groceries",8.7
+Phoenix,7,31600,870,"Electronics,Furniture",7.5
+New York,5,48900,1150,"Groceries,Clothing",8.4
+Phoenix,6,29700,810,"Electronics,Clothing",7.9
+Phoenix,8,44300,1020,"Groceries,Furniture",8.1
+Phoenix,9,51700,1250,"Electronics,Groceries",8.6
+Phoenix,10,39400,900,"Clothing,Electronics",8.0
