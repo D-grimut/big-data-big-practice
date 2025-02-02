@@ -62,7 +62,7 @@ b_new = np.array([[1.5, 22, 3], [4, 55, 6], [-1,-1,-1]])
 print(b_new[0:2, 1]) # Extracts second column - we get the first two rows with [0:2] and then acess the first column with [1], note that the result of this is a 1D array, since we are getting all the values inside the 2nd column, of the first two rows
 print(b_new[:1]) # Extracts first row
 
-# Boolean indexing
+# Boolean indexing - creates boolean mask and returns all items that have "True" in the boolean mask
 print(b_new[b_new < 3]) # output: [ 1.5 -1.  -1.  -1. ]
 
 # Here we are simply passing in the matrix of indeces of the items we want
