@@ -26,7 +26,7 @@ print("-----------------------------")
 genres_split = movies['genres'].str.split('|', expand=True)
 print(f'Genres split:\n {genres_split}')
 
-# Creating a new column and gicing it the values of True or false -> we are assocaited a SERIES to the column
+# Creating a new column and giving it the values of True or false -> we are assocaited a SERIES to the column
 # the Series = values in the column
 movies["IsComedy"] = movies["genres"].str.contains("Comedy")
 print(f'Movies with Comedy column:\n{movies.head()}')
@@ -39,7 +39,8 @@ print(f'Movies stats:\n{movies.describe()}')
 print(f'Most Frequent Rating:{ratings["rating"].mode()}')
 
 # reset_index resets the index of the Series produced, and names the series 'rating'.
-avg_rating_movies = ratings.groupby(by="movieId")["rating"].mean().reset_index(name="rating")
+# the double brackets for [["rating"]] mean we are selecting "rating" col and making it into a DF
+avg_rating_movies = ratings.groupby(by="movieId")[["rating"]].mean()
 print(f'Avg Rating for each movie:\n{avg_rating_movies}')
 
 best_movies = avg_rating_movies[avg_rating_movies["rating"] == 5.0]
@@ -75,6 +76,11 @@ print("Correlation between release year and average rating:", correlation)
 # Again, here we want to group by year and avergae the ratings - this means we need to 
 # select the "rating" column AFTER the groupby, and then mean, otherwise the mean() will be performed
 # on all the columns present in the groupby.
-yearly_avg = movies_with_year.groupby(by="year")["rating"].mean().reset_index(name="avg_year_rating")
-print(f'Avg yearly rating:\n{yearly_avg}')
+
+# since we aggregate by year, we gurantee that the new DF created will have unique labels for year - year is our new index here
+yearly_avg = movies_with_year.groupby(by="year")[["rating"]].mean()
+yearly_avg.rename(columns={"rating": "avg_yearly_rating"})
+# Throws a key error since our labels are the years - 0 is not in the "year" list
+# print(f'item: {yearly_avg.loc[0]}')
+print(f'Avg yearly rating:{yearly_avg}')
 print("-----------------------------")

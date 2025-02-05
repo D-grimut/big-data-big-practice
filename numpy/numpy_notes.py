@@ -4,7 +4,7 @@ python_list = [[1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]
 print(python_list)
 
 # a = np.array([1, 2, 3, 4, 5]) # shape = (5,)
-a = np.array([[1, 2, 3, 4, 5], [1, 2, 3, 4, 5], [1, 2, 3, 4, 5] ]) # shape = (3, 5)
+a = np.array([(1, 2, 3, 4, 5), [1, 2, 3, 4, 5], [1, 2, 3, 4, 5] ]) # shape = (3, 5)
 a2 = np.array([[1, 2, 3, 4, 5], [1, 2, 3, 4, 5]]) # shape = (2, 5)
 b = a ** 2
 c = np.sum(a) # same as c = b.sum()
@@ -20,6 +20,9 @@ print(type(a))
 
 print("--------")
 
+# a = a.reshape(1, 15)
+print("hehe", a)
+
 # note: when reshaping, the number of elements should be the product of rows * cols
 # so a reshape of an arangment of 25 elemnets into a matrix of size 2x2 wont work since 2x2 = 4
 d = np.arange(24).reshape(2,2,6)
@@ -33,7 +36,7 @@ f = np.eye(10)
 print("The 3x3 identity matrix:", f)
 
 # Create a random array
-print("The random array:", np.random.random((2)))
+print("The random array:", np.random.random((2, 4)))
 
 print(np.array_equal(a, a2))
 
@@ -41,6 +44,7 @@ print(np.array_equal(a, a2))
 # note: if we ommit the axis we perform the operation on all elements in the matrix, as if we flattened the matrix into size (1, n) - 1 row x n columns
 # suming by columns - num of columns remains the same, but now we only have one (1) row
 print(a.sum(axis=0))
+print("Sum of all:", a.sum())
 
 # suming by rows - we have one row at the end, where the num of columns is the number of rows we had (the value at each col is the sum of that row)
 print(a.sum(axis=1))
@@ -48,7 +52,7 @@ print(a.sum(axis=1))
 # suming by row - but the value at index i in a row, is the sum of all numbers up to and including i
 # the shape after cumsum remains the same, BUT if we sum along the rows (axis 1), we have the cumsum appear in the rows
 # and if we do columns (axis 0), the cumsum will appear in the collumns.
-print(b.cumsum(axis=0)) 
+print("cumsum:", b.cumsum(axis=0)) 
 
 # Note: new_a = old_a simply assigns a new REFERANCE to the array old_a.
 # however, doing new_a = old_a.view() will create a new object (a view of the array), that will point to the values of old_a, sort of like a shared pointer in itself is a unique entity, but points to a shared resource.

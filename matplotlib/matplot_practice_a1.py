@@ -28,10 +28,11 @@ categories_ny = pdd.merge(ny_df, categories, left_index=True, right_index=True)
 # print(categories_ny)
 
 # reset_index makes the series back into a DF
-categories_price = categories_ny.groupby('Product Categories_y')["Revenue"].sum().reset_index()
-# print(categories_price)
+categories_price = categories_ny.groupby('Product Categories_y')[["Revenue"]].sum()
+print(categories_price)
 
-categories_fixed = categories_price['Product Categories_y'].to_numpy()
+# we can't just acess the "Product Categories_y" column since its our "label" column which MUST remain immutable, so we need to use the .keys() function instead
+categories_fixed = categories_price.keys().to_numpy()
 categories_revenues = categories_price['Revenue'].to_numpy()
 
 axs[0, 1].bar(categories_fixed, categories_revenues, width=0.5, color="blue")
@@ -64,7 +65,7 @@ axs[1, 0].set_title("Categories vs Revenue in NY")
 # plt.show()
 
 # task 5
-tot_rev = dataset.groupby(by="City")['Revenue'].sum().reset_index()
+tot_rev = dataset.groupby(by="City")['Revenue'].sum().reset_index() # here better to reset index, since we want to aggregate on "revenue" col after
 total_rev = tot_rev['Revenue'].sum()
 
 cities = tot_rev['City']

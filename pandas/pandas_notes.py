@@ -11,6 +11,8 @@ ser = pdiddy.Series([100, 200, 300, 400], index=['apple', 'ball', 'cat', 'dog'])
 print(ser)
 print(ser * 2) # ELEMENET wise opperation
 
+# acessing by ser.loc vs ser[...] => loc if (inclusive, inclusive) for slicing and ser[...] is (inclusive, exclusive)
+
 # Series =  A one-dimensional labeled array
 # DF = A two-dimensional labeled data structure similar to a table
 # data = pdiddy.Series([[10, 23, 56, 17], [10, 23, 56, 17]])
@@ -21,6 +23,7 @@ print(data)
 # DF are size mutable, heterogenous and support arithmetic opps.
 data_many = {'Name': ['Nosferatu', 'Helen', "Chief Kief", "Diddy"], 'Age': [459, 28, 300, None], 'Gender':
 ['Male', 'Female', 'Male', "Unknown"]}
+# df = pdiddy.DataFrame(data_many, index=["old romanian", "wierd british girl", "OG rapper", "we dont like him"])
 df = pdiddy.DataFrame(data_many)
 print(df)
 print("--------------------")
@@ -28,7 +31,7 @@ print("--------------------")
 print(f'names here:\n{df["Name"]}') # Select column
 print(df.loc[0]) # Select row by index - the index is the LABEL, in this case Label=Index of the row
 print(f'iloc with arr: {df.iloc[0, 1]}') # Select element by position - row 0, col 1
-print(df[1:3]) # Slice rows
+print(df[1:3]) # Slice rows - note we cannot slice rows and columns - need to use iloc, or loc for that
 print(df.loc[:, 'Name':'Age']) # Slice rows and columns
 
 print("--------------------")
@@ -46,11 +49,14 @@ print(f'DF stats:\n {df.describe()}')
 df = df.fillna(0)
 print(f'DF after fillna:\n {df}')
 
-# Essentialy saying "create a new dataframe from df, but only keep rows from df where age > 30"
+# Essentialy saying "create a new dataframe from df, but only keep rows from df where age > 30" - CREATES A NEW DF
 # under the hood df['Age'] > 30 is going to go over all the cells of the table and create a 
 # new boolean 1D array/Series (mask), which will indicate which rows to keep from the DF.
 df_bool = df[df['Age'] > 30]
 print(f'DF after filter:\n {df_bool}')
+
+# df[['Age']] -> returns a DF
+# df['Age'] -> returns a Series
 
 # # summariszing data using groupby
 grouped = df.groupby('Age')

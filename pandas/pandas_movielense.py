@@ -43,7 +43,7 @@ print(is_animation)
 print("-----------------")
 
 average_rating = ratings[['movieId','rating']].groupby('movieId').mean()
-id_movie = average_rating.loc[average_rating["rating"] == 5.0].index
+id_movie = average_rating[average_rating["rating"] == 5.0].index
 # Same as the line before - notice how we can acess ratings using dot notation (like a property) and as a string "key"
 # id_movie = average_rating.loc[average_rating.rating == 5.0].index
 print(id_movie)

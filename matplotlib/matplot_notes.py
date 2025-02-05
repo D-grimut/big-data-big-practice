@@ -3,7 +3,7 @@ import numpy as np
 
 # Note: see matplot_practice_a1.py for PROPER WAY TO DO SUBPLOTS
 
-# Data - can be represneted as: list, tuple, or NumPy array
+# Data - can be represneted as: list, tuple, or NumPy array AND Series
 
 x = [1, 2, 3, 4, 5]
 y = [2, 4, 6, 8, 10]
@@ -17,6 +17,9 @@ y1 = [20,0]
 # If y is omitted, the function assumes values starting from 0 for the x-axis and
 # takes x as the y-values
 plt.plot(x, y, linestyle = "--",label='Linear Growth', color='blue', marker='x')
+
+# If I remove x, the indeces of the y list are the x values
+# plt.plot(y, linestyle = "--",label='Linear Growth', color='blue', marker='x')
 
 # we are using fmt syntax - 'o:r' = 'o' marker, ':' for dotted line and 'r' for red
 plt.plot(x1, y1, 'o:r', label="slibidi", ms=20, mfc='black', linewidth=5) # ms = marker size, mfc=marker color
